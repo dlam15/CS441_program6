@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Game">
 
-    <com.example.indivgame.Order
+    <com.example.indivgame.Photo
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="500dp"

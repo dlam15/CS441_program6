@@ -15,7 +15,7 @@ import java.util.Random;
 
 import static java.lang.Math.abs;
 
-public class Order extends View {
+public class Photo extends View {
 
     private Bitmap original;
     private ArrayList<Bitmap> correct;
@@ -27,15 +27,15 @@ public class Order extends View {
     private int width;
     private int height;
 
-    public Order(Context context) {
+    public Photo(Context context) {
         super(context);
     }
 
-    public Order(Context context, @Nullable AttributeSet attrs) {
+    public Photo(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Order(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Photo(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
