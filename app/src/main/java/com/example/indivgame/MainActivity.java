@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Game.class);
+                Intent intent = new Intent(MainActivity.this, ImgSelect.class);
                 startActivity(intent);
             }
         });
