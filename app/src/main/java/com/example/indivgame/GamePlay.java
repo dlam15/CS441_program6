@@ -106,7 +106,6 @@ public class GamePlay extends View {
         int spaceY = 0;
         for(int i=0;i<(size*size-1);i++){
             Bitmap temp = Bitmap.createBitmap(original,x,y,width,height);
-            //Log.e("GamePlay", "creating images");
             final Img img = new Img();
             img.bitmap = temp;
             img.x = x+spaceX;
@@ -182,7 +181,6 @@ public class GamePlay extends View {
         if(blank%size == num%size && (abs(blank/size - num/size) == 1)){ //same column (one off)
             return 1;
         }
-        //Log.e("Order","immovable");
         return -1;
     }
 

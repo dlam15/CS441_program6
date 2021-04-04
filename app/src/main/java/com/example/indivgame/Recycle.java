@@ -7,15 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
@@ -63,10 +61,7 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Game.class);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                images.get(position).compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-                intent.putExtra("IMAGE", byteArray);
+                intent.putExtra("IMAGE", position);
                 intent.putExtra("SIZE", puzzleSize);
                 context.startActivity(intent);
             }
@@ -81,14 +76,14 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView text;
-        Button delete;
+        ImageButton delete;
         Button play;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imageView);
             text = itemView.findViewById(R.id.textView3);
-            delete = itemView.findViewById(R.id.button2);
+            delete = itemView.findViewById(R.id.imageButton);
             play = itemView.findViewById(R.id.button3);
         }
     }

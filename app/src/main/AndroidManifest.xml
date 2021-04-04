@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IndivGame">
-        <activity android:name=".ImgSelect"></activity>
+        <activity android:name=".Score"
+            android:theme="@style/Theme.IndivGame.ScoreTheme"></activity>
+        <activity
+            android:name=".Confirm"
+            android:theme="@style/Theme.IndivGame.PopupTheme" />
+        <activity
+            android:name=".Instructions"
+            android:theme="@style/Theme.IndivGame.PopupTheme" />
+        <activity android:name=".HighScore" />
+        <activity android:name=".ImgSelect" />
         <activity android:name=".Game" />
         <activity android:name=".MainActivity">
             <intent-filter>

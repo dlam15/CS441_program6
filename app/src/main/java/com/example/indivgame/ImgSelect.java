@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -17,33 +19,21 @@ import java.util.ArrayList;
 public class ImgSelect extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Recycle adapter;
-
+    private ImgStorage imgStorage;
     private ArrayList<Bitmap> images;
     private ArrayList<String> description;
     private int puzzleSize;
+    private ImageButton back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_select);
 
-        images = new ArrayList<>();
-        description = new ArrayList<>();
-        Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(),R.drawable.img1);
-        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(),R.drawable.img2);
-        Bitmap bitmap3 = BitmapFactory.decodeResource(getResources(),R.drawable.img3);
-        images.add(bitmap1);
-        images.add(bitmap2);
-        images.add(bitmap3);
-
-        for(int i=0;i<images.size();i++){
-            Bitmap bitmap = Bitmap.createScaledBitmap(images.get(i), 500, 500,true);
-            images.set(i,bitmap);
-        }
-
-        description.add("Temp");
-        description.add("Temp");
-        description.add("Professor");
+        imgStorage = imgStorage.getInstance(this);
+        images = imgStorage.getImages();
+        description = imgStorage.getDescription();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
         adapter = new Recycle(this, images,description, 2, puzzleSize);
@@ -65,6 +55,15 @@ public class ImgSelect extends AppCompatActivity {
         });
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.size, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        back = (ImageButton) findViewById(R.id.imageButton2);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ImgSelect.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void refresh(){

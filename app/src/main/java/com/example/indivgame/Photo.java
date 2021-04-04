@@ -3,6 +3,8 @@ package com.example.indivgame;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -10,22 +12,22 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
-
-import static java.lang.Math.abs;
 
 public class Photo extends View {
 
     private Bitmap original;
     private ArrayList<Bitmap> correct;
     private ArrayList<Bitmap> current;
+    private ArrayList<String> track;
     private ArrayList<ArrayList<Integer>> coord;
+    private Paint paint;
 
     private int blank;
     private int size;
     private int width;
     private int height;
+    private boolean hint;
 
     public Photo(Context context) {
         super(context);
@@ -44,9 +46,11 @@ public class Photo extends View {
         size = num;
         correct = new ArrayList<>();
         current = new ArrayList<>();
+        track = new ArrayList<>();
         coord = new ArrayList<>();
         width = (original.getWidth()/size);
         height = (original.getHeight()/size);
+        hint = false;
         int x = 0;
         int y = 0;
         int spaceX = 0;
@@ -55,6 +59,7 @@ public class Photo extends View {
             Bitmap temp = Bitmap.createBitmap(original,x,y,width,height);
             correct.add(temp);
             current.add(temp);
+            track.add(String.valueOf(i+1));
             ArrayList<Integer> coordinates = new ArrayList<>();
             coordinates.add(x+spaceX);
             coordinates.add(y+spaceY);
@@ -77,6 +82,7 @@ public class Photo extends View {
         }
         correct.add(null);
         current.add(null);
+        track.add(null);
         while(check()){
             shuffle();
         }
@@ -89,6 +95,14 @@ public class Photo extends View {
         for(int i=0; i<current.size(); i++){
             if(i != blank) {
                 canvas.drawBitmap(current.get(i), coord.get(i).get(0), coord.get(i).get(1), null);
+                if(hint){
+                    paint = new Paint();
+                    paint.setColor(Color.WHITE);
+                    canvas.drawRect(coord.get(i).get(0),coord.get(i).get(1),coord.get(i).get(0)+50,coord.get(i).get(1)+60, paint);
+                    paint.setColor(Color.BLACK);
+                    paint.setTextSize(50);
+                    canvas.drawText(track.get(i),coord.get(i).get(0),coord.get(i).get(1)+50,paint);
+                }
             }
         }
     }
@@ -120,7 +134,8 @@ public class Photo extends View {
 
     private void shuffle(){
         Random random = new Random();
-        int moves = random.nextInt(size*15-size*10)+size*10;
+        //int moves = random.nextInt(size*15-size*10)+size*10;
+        int moves = 1;
         int last = -1;
         for(int i=0; i<moves; i++){
             ArrayList<Integer> options = allMovable(last);
@@ -143,19 +158,12 @@ public class Photo extends View {
     }
 
     public int movable(int num){
-        /*if(blank/size == num/size && (abs(blank%size - num%size) == 1)){ //same row (one off)
-            return 0;
-        }
-        if(blank%size == num%size && (abs(blank/size - num/size) == 1)){ //same column (one off)
-            return 1;
-        }*/
         if(blank/size == num/size){ //same row
             return 0;
         }
         if(blank%size == num%size){ //same column
             return 1;
         }
-        //Log.e("Order","immovable");
         return -1;
     }
 
@@ -163,24 +171,26 @@ public class Photo extends View {
         int move = movable(num);
         if(move<0){
             return false;
-        /*} else if(move == 0 || move == 1){
-            current.set(blank,current.get(num));
-            current.set(num, null);
-            blank = num;*/
         } else if(move == 0){
             if(blank < num){
                 int count = num-blank;
                 for(int i=0; i<count; i++){
                     current.set(blank,current.get(blank+1));
                     current.set(blank+1, null);
+                    track.set(blank, track.get(blank+1));
+                    track.set(blank+1, null);
                     blank +=1;
+
                 }
             } else if(blank > num){
                 int count = blank-num;
                 for(int i=0; i<count; i++){
                     current.set(blank,current.get(blank-1));
                     current.set(blank-1, null);
+                    track.set(blank, track.get(blank-1));
+                    track.set(blank-1, null);
                     blank -=1;
+
                 }
             }
         } else if(move == 1){
@@ -189,19 +199,31 @@ public class Photo extends View {
                 for (int i = 0; i<count; i++) {
                     current.set(blank, current.get(blank + size));
                     current.set(blank + size, null);
+                    track.set(blank, track.get(blank+size));
+                    track.set(blank+size, null);
                     blank += size;
+
                 }
             }else if(blank > num){
                 int count = blank/size - num/size;
                 for(int i=0; i<count; i++){
                     current.set(blank,current.get(blank-size));
                     current.set(blank-size, null);
+                    track.set(blank, track.get(blank-size));
+                    track.set(blank-size, null);
                     blank -=size;
+
                 }
             }
         }
         invalidate();
         return true;
+    }
+
+    public void toggleHint(){
+        if(hint == true) hint = false;
+        else hint = true;
+        invalidate();
     }
 
 }
