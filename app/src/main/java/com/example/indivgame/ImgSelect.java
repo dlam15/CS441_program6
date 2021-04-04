@@ -20,10 +20,10 @@ public class ImgSelect extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Recycle adapter;
     private ImgStorage imgStorage;
-    private ArrayList<Bitmap> images;
-    private ArrayList<String> description;
     private int puzzleSize;
     private ImageButton back;
+    private Button create;
+    private int rem;
 
 
     @Override
@@ -32,11 +32,8 @@ public class ImgSelect extends AppCompatActivity {
         setContentView(R.layout.activity_img_select);
 
         imgStorage = imgStorage.getInstance(this);
-        images = imgStorage.getImages();
-        description = imgStorage.getDescription();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
-        adapter = new Recycle(this, images,description, 2, puzzleSize);
         refresh();
 
         //https://developer.android.com/guide/topics/ui/controls/spinner
@@ -64,17 +61,40 @@ public class ImgSelect extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        create = (Button) findViewById(R.id.button);
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ImgSelect.this, AddImg.class);
+                startActivity(intent);
+                refresh();
+            }
+        });
     }
 
     public void refresh(){
-        adapter = new Recycle(this, images,description, 2, puzzleSize);
+        adapter = new Recycle(this, ImgSelect.this, puzzleSize);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void remove(int index){
-        images.remove(index);
-        description.remove(index);
-        refresh();
+        rem = index;
+        Intent intent = new Intent(ImgSelect.this, Confirm.class);
+        intent.putExtra("TYPE",2);
+        startActivityForResult(intent, 7);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode == 7 && resultCode == 0){
+            imgStorage.removeImage(rem);
+            refresh();
+        }
+
     }
 }

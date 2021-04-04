@@ -91,7 +91,7 @@ public class GamePlay extends View {
     }
 
     public void initialize(int widthIn, int heightIn){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.img3);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.img1);
         Bitmap b = Bitmap.createScaledBitmap(bitmap,widthIn-50,heightIn-50,true);
         original = b;
         size = 3;

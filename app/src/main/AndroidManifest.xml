@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.indivgame">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IndivGame">
-        <activity android:name=".Score"
-            android:theme="@style/Theme.IndivGame.ScoreTheme"></activity>
+        <activity android:name=".Create"></activity>
+        <activity
+            android:name=".Name"
+            android:theme="@style/Theme.IndivGame.ScoreTheme" />
+        <activity
+            android:name=".AddImg"
+            android:theme="@style/Theme.IndivGame.PopupTheme" />
+        <activity
+            android:name=".Score"
+            android:theme="@style/Theme.IndivGame.ScoreTheme" />
         <activity
             android:name=".Confirm"
             android:theme="@style/Theme.IndivGame.PopupTheme" />

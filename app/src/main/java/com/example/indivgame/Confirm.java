@@ -39,6 +39,8 @@ public class Confirm extends AppCompatActivity {
             text = "Are you sure you want to reset your scores?";
         }else if(type ==1){
             text = "Are you sure you want to quit?";
+        }else if(type ==2){
+            text = "Are you sure you want to delete this picture?";
         }
         textView = (TextView) findViewById(R.id.textView9);
         textView.setText(text);

@@ -3,6 +3,7 @@ package com.example.indivgame;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,8 +19,8 @@ public class ImgStorage {
     private ArrayList<Bitmap> images;
     private ArrayList<String> description;
     private Context context;
-    private String highscores = "highscores";
     private String photos = "photos";
+    private int defaults;
 
     //Code based on https://developer.android.com/training/data-storage/app-specific
 
@@ -28,21 +29,22 @@ public class ImgStorage {
         context = contextIn;
         images = new ArrayList<>();
         description = new ArrayList<>();
-        Bitmap bitmap1 = BitmapFactory.decodeResource(context.getResources(),R.drawable.img1);
-        Bitmap bitmap2 = BitmapFactory.decodeResource(context.getResources(),R.drawable.img2);
-        Bitmap bitmap3 = BitmapFactory.decodeResource(context.getResources(),R.drawable.img3);
-        images.add(bitmap1);
-        images.add(bitmap2);
-        images.add(bitmap3);
-
-        for(int i=0;i<images.size();i++){
-            Bitmap bitmap = Bitmap.createScaledBitmap(images.get(i), 500, 500,true);
-            images.set(i,bitmap);
+        defaults = 10;
+        for(int i=0; i<defaults;i++){
+            int identify = context.getResources().getIdentifier("img"+ (i+1), "drawable",context.getPackageName());
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),identify);
+            images.add(bitmap);
         }
-
-        description.add("Temp");
-        description.add("Temp");
         description.add("Professor");
+        description.add("Lake");
+        description.add("Waterfall");
+        description.add("Mountain");
+        description.add("Lake-Night");
+        description.add("Lion");
+        description.add("Snake");
+        description.add("Panda");
+        description.add("Owl");
+        description.add("Butterfly");
     }
 
     public static ImgStorage getInstance(Context context){
@@ -58,6 +60,20 @@ public class ImgStorage {
 
     public ArrayList<String> getDescription(){
         return description;
+    }
+
+    public int getDefaults(){
+        return defaults;
+    }
+
+    public void addImage(Bitmap bitmap, String descript){
+        images.add(bitmap);
+        description.add(descript);
+    }
+
+    public void removeImage(int index){
+        images.remove(index);
+        description.remove(index);
     }
 
 }

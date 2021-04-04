@@ -23,17 +23,21 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
     private int defaultNum;
     private Context context;
     private int puzzleSize;
+    private ImgStorage imgStorage;
+    private ImgSelect imgSelect;
 
     //RecycleView Adapter based on
     //https://www.youtube.com/watch?v=18VcnYN5_LM
     //https://www.youtube.com/watch?v=Vyqz_-sJGFk
 
-    public Recycle(Context contextIn, ArrayList<Bitmap> img, ArrayList<String> des, int defaultIn, int size) {
+    public Recycle(Context contextIn, ImgSelect img, int size) {
         context = contextIn;
-        images = img;
-        description = des;
-        defaultNum = defaultIn;
+        imgSelect = img;
         puzzleSize = size;
+        imgStorage = imgStorage.getInstance(context);
+        images = imgStorage.getImages();
+        description = imgStorage.getDescription();
+        defaultNum = imgStorage.getDefaults();
     }
 
     @NonNull
@@ -48,6 +52,8 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(position <defaultNum) {
             holder.delete.setVisibility(View.INVISIBLE);
+        }else{
+            holder.delete.setVisibility(View.VISIBLE);
         }
         Bitmap bitmap = Bitmap.createScaledBitmap(images.get(position), 100, 100,true);
         holder.img.setImageBitmap(bitmap);
@@ -64,6 +70,13 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
                 intent.putExtra("IMAGE", position);
                 intent.putExtra("SIZE", puzzleSize);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgSelect.remove(position);
             }
         });
     }

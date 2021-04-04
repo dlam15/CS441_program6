@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Game extends AppCompatActivity {
 
     private Photo photo;
-    private TextView outcome;
     private TextView moves;
     private Bitmap bitmap;
     private int size;
@@ -48,9 +47,8 @@ public class Game extends AppCompatActivity {
         }
 
         photo = (Photo) findViewById(R.id.view);
-        outcome = (TextView) findViewById(R. id.textView2);
-        outcome.setVisibility(View.INVISIBLE);
         chronometer = (Chronometer) findViewById(R.id.timer);
+        chronometer.setFormat("Time: %s");
         moves = (TextView) findViewById(R.id.textView4);
         hint = (Button) findViewById(R.id.hintBtn);
 
@@ -109,7 +107,6 @@ public class Game extends AppCompatActivity {
                         moves.setText("Moves: " + String.valueOf(count));
                         if(photo.check()){
                             //Log.e("Game","You win");
-                            outcome.setVisibility(View.VISIBLE);
                             time = (int)(SystemClock.elapsedRealtime() - chronometer.getBase())/1000;
                             chronometer.stop();
                             //if(highscores.get(index) == null || highscores.get(index) > time){
