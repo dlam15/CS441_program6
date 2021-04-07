@@ -1,7 +1,17 @@
 Derrick Lam  
 ## CS441 Individual Game
 
-For this assignment I created ...
+For this assignment I created an arrange puzzle game where the player
+would have to move boxes until the pieces are in the correct places
+to make the full image. I have included 10 default image puzzles and
+a way to import images from the phone's gallery. The player is also
+able to take a picture from the camera and use that image; which means
+to use the app, the device must allow camera use. These images are not
+saved to the device so the user will have to reupload or retake a
+picture to use it if the app is restarted. While playing the game, the
+game will record your time and number of moves and keep the shortest
+time or smallest number of moves as the high score which is saved in
+storage.
 
 
 ## References:  
@@ -29,10 +39,10 @@ https://stackoverflow.com/questions/526524/android-get-time-of-chronometer-widge
 https://www.javatpoint.com/android-startactivityforresult-example  
 
 Animation  
-https://medium.com/@patrick.elmquist/continuous-animation-using-timeanimator-5b8a903603fb
+https://medium.com/@patrick.elmquist/continuous-animation-using-timeanimator-5b8a903603fb  
 
 Images  
-https://www.google.com/search?q=patrick+madden+binghamton&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjAk8G54dHvAhXtnuAKHZVpC5wQ_AUoAnoECAEQBA&biw=1010&bih=636#imgrc=TCzPsWAQ0OIybM
+https://www.binghamton.edu/news/story/888/mobile-apps-fun-and-functional  
 https://www.adorama.com/alc/basic-landscape-photography-tips/  
 https://www.bhphotovideo.com/explora/photography/tips-and-solutions/tips-for-landscape-photography  
 https://photography.lovetoknow.com/beautiful-scenery-photography  
@@ -57,5 +67,5 @@ Pop up window
 https://www.youtube.com/watch?v=fn5OlqQuOCk  
 
 Data Storage  
-https://developer.android.com/training/data-storage/app-specific
+https://developer.android.com/training/data-storage/app-specific  
 

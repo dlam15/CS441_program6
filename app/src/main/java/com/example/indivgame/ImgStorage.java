@@ -5,13 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ImgStorage {
@@ -19,10 +12,7 @@ public class ImgStorage {
     private ArrayList<Bitmap> images;
     private ArrayList<String> description;
     private Context context;
-    private String photos = "photos";
     private int defaults;
-
-    //Code based on https://developer.android.com/training/data-storage/app-specific
 
     //Singleton class
     private ImgStorage(Context contextIn){
@@ -31,6 +21,9 @@ public class ImgStorage {
         description = new ArrayList<>();
         defaults = 10;
         for(int i=0; i<defaults;i++){
+            //Loop through and load default images
+            //https://developer.android.com/reference/android/content/res/Resources
+            //https://stackoverflow.com/questions/9481334/how-to-replace-r-drawable-somestring/9481452#9481452
             int identify = context.getResources().getIdentifier("img"+ (i+1), "drawable",context.getPackageName());
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),identify);
             images.add(bitmap);

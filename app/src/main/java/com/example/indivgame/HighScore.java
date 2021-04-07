@@ -50,12 +50,15 @@ public class HighScore extends AppCompatActivity {
 
     }
 
+    //Get the results of an activity
+    //https://www.javatpoint.com/android-startactivityforresult-example
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
-        if(resultCode ==0){
+        if(requestCode ==0  && resultCode ==0){
             for (int i = 0; i < highscores.size(); i += 2) {
+                //Reset scores
                 scanner.updateScores(i, null, 0);
                 scanner.updateScores(i, null, 1);
             }

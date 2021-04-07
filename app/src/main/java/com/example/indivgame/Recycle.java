@@ -50,6 +50,7 @@ public class Recycle extends RecyclerView.Adapter<Recycle.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //Only delete non default images
         if(position <defaultNum) {
             holder.delete.setVisibility(View.INVISIBLE);
         }else{

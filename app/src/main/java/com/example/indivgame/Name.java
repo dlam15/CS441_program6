@@ -29,14 +29,17 @@ public class Name extends AppCompatActivity {
 
         text = (EditText) findViewById(R.id.editText);
 
+
         accept = (Button) findViewById(R.id.button18);
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent();
-                intent.putExtra("NAME", text.getText().toString());
-                setResult(RESULT_OK,intent);
-                finish();
+                if(!text.getText().toString().isEmpty()) {
+                    Intent intent = new Intent();
+                    intent.putExtra("NAME", text.getText().toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
 

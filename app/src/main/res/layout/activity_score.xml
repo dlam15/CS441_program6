@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BABABA"
     tools:context=".Score">
 
     <com.example.indivgame.Complete
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
+        android:background="#B5B119"
         android:text="Scores"
         app:layout_constraintStart_toEndOf="@+id/button14"
         app:layout_constraintTop_toTopOf="@+id/button14" />
@@ -42,11 +44,12 @@
 
     <Button
         android:id="@+id/button13"
-        android:layout_width="77dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="20dp"
+        android:background="#43579F"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
+        android:background="#4BCF47"
         android:text="Play Again"
         app:layout_constraintStart_toEndOf="@+id/button13"
         app:layout_constraintTop_toTopOf="@+id/button13" />

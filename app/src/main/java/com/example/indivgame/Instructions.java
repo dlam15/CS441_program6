@@ -34,7 +34,7 @@ public class Instructions extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                finish(); //CLose activity to resume previous activity
             }
         });
     }

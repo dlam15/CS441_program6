@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C9D9DD"
     tools:context=".ImgSelect">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="40dp"
         android:text="Create"
+        app:backgroundTint="#24A0B6"
         app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -55,6 +57,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:background="#C9D9DD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />

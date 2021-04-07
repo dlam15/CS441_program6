@@ -4,36 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BABABA"
     tools:context=".AddImg">
-
-    <Button
-        android:id="@+id/button15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Draw"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#CBD18E"
         android:text="Gallery"
-        app:layout_constraintStart_toEndOf="@+id/button15"
-        app:layout_constraintTop_toTopOf="@+id/button15" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#CBD18E"
         android:text="Camera"
         app:layout_constraintStart_toEndOf="@+id/button16"
         app:layout_constraintTop_toTopOf="@+id/button16" />

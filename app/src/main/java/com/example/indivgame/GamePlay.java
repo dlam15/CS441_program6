@@ -105,6 +105,8 @@ public class GamePlay extends View {
         int spaceX = 0;
         int spaceY = 0;
         for(int i=0;i<(size*size-1);i++){
+            //Take part of the image
+            //https://stackoverflow.com/questions/7234986/how-to-split-image-to-2-parts
             Bitmap temp = Bitmap.createBitmap(original,x,y,width,height);
             final Img img = new Img();
             img.bitmap = temp;
@@ -123,6 +125,7 @@ public class GamePlay extends View {
                 coordinates.add(y+spaceY);
                 coord.add(coordinates);
             }
+            //Add location of blank image
             if(i == (size*size-2)){
                 blank = i+1;
                 final Img blnk = new Img();

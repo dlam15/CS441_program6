@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AFAFAF"
     tools:context=".MainActivity">
 
     <TextView
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Start"
+        app:backgroundTint="#276A23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gamePlay" />
@@ -48,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="High Scores"
+        app:backgroundTint="#9E7C16"
         app:layout_constraintEnd_toEndOf="@+id/startButton"
         app:layout_constraintStart_toStartOf="@+id/startButton"
         app:layout_constraintTop_toBottomOf="@+id/startButton" />
@@ -61,6 +64,7 @@
         android:layout_marginBottom="15dp"
         android:text="\?"
         android:textSize="24sp"
+        app:backgroundTint="#0E4CAA"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

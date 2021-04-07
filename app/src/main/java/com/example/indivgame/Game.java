@@ -43,7 +43,7 @@ public class Game extends AppCompatActivity {
         if(extras != null) {
             bitmap = imgStorage.getImages().get(extras.getInt("IMAGE"));
             size = extras.getInt("SIZE");
-            index = 2*size -6;
+            index = 2*size -6; //Index for the high scores of this puzzle size
         }
 
         photo = (Photo) findViewById(R.id.view);
@@ -53,7 +53,6 @@ public class Game extends AppCompatActivity {
         hint = (Button) findViewById(R.id.hintBtn);
 
         count = 0;
-        moves.setText("Moves: " + String.valueOf(count));
         scanner = scanner.getInstance(this);
         highscores = scanner.getScores();
 
@@ -83,6 +82,7 @@ public class Game extends AppCompatActivity {
             }
         });
 
+        //Listen to be able to get the size of the width and height
         //https://coderwall.com/p/immp8q/get-height-of-a-view-in-oncreate-method-android
         final ViewTreeObserver observer= photo.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -90,8 +90,11 @@ public class Game extends AppCompatActivity {
             public void onGlobalLayout() {
                 Bitmap b = Bitmap.createScaledBitmap(bitmap, photo.getWidth()-50, photo.getHeight()-50,true);
                 photo.initialize(b,size);
+                //Chronometer
+                //https://www.youtube.com/watch?v=RLnb4vVkftc
                 chronometer.setBase(SystemClock.elapsedRealtime());
                 chronometer.start();
+                //Stop listening so that the game doesn't keep randomizing
                 //https://stackoverflow.com/questions/18285540/stop-listening-for-more-listener-events
                 photo.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
@@ -104,17 +107,17 @@ public class Game extends AppCompatActivity {
                     boolean changed = photo.clicked((int)event.getX(),(int)event.getY());
                     if(changed){
                         count += 1;
-                        moves.setText("Moves: " + String.valueOf(count));
+                        moves.setText("Moves: " + count);
                         if(photo.check()){
-                            //Log.e("Game","You win");
-                            time = (int)(SystemClock.elapsedRealtime() - chronometer.getBase())/1000;
+                            //https://stackoverflow.com/questions/526524/android-get-time-of-chronometer-widget
+                            time = (int)(SystemClock.elapsedRealtime() - chronometer.getBase())/1000; //Get the time in seconds
                             chronometer.stop();
-                            //if(highscores.get(index) == null || highscores.get(index) > time){
-                                scanner.updateScores(index,time,0);
-                            //}
-                            //if(highscores.get(index+1) == null || highscores.get(index+1) > count){
-                                scanner.updateScores(index,count,1);
-                            //}
+                            if(highscores.get(index) == null || highscores.get(index) > time){
+                                scanner.updateScores(index,time,0);//type 0 = time
+                            }
+                            if(highscores.get(index+1) == null || highscores.get(index+1) > count){
+                                scanner.updateScores(index,count,1);//type 1 = moves
+                            }
                             back.setEnabled(false);
                             hint.setEnabled(false);
                             instruction.setEnabled(false);
@@ -132,11 +135,13 @@ public class Game extends AppCompatActivity {
 
     }
 
+    //Get the results of an activity
+    //https://www.javatpoint.com/android-startactivityforresult-example
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode ==0){
-            finish();
+        if(requestCode ==1 && resultCode ==0){
+            finish(); //End the game but don't let them use the back button to get back to game
         }
 
     }

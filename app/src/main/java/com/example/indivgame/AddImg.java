@@ -14,7 +14,6 @@ import android.widget.Button;
 
 public class AddImg extends AppCompatActivity {
 
-    private Button draw;
     private Button gallery;
     private Button camera;
     private ImgStorage imgStorage;
@@ -31,10 +30,12 @@ public class AddImg extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(display);
         int width = display.widthPixels;
         int height = display.heightPixels;
-        getWindow().setLayout((int)(width*.8),(int)(height*.2));
+        getWindow().setLayout((int)(width*.6),(int)(height*.2));
 
         imgStorage = imgStorage.getInstance(this);
 
+        //Images from the phone's gallery
+        //https://www.tutorialspoint.com/how-to-pick-an-image-from-image-gallery-in-android
         gallery = (Button) findViewById(R.id.button16);
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,8 @@ public class AddImg extends AppCompatActivity {
             }
         });
 
+        //Take a picture using the camera
+        //https://developer.android.com/training/camera/photobasics
         camera = (Button) findViewById(R.id.button17);
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +57,15 @@ public class AddImg extends AppCompatActivity {
         });
     }
 
+    //Get the results of an activity
+    //https://www.javatpoint.com/android-startactivityforresult-example
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 3){
             Uri imageUri = data.getData();
             try {
+                //https://stackoverflow.com/questions/3879992/how-to-get-bitmap-from-an-uri
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                 Intent intent = new Intent(AddImg.this, Name.class);
                 startActivityForResult(intent, 4);

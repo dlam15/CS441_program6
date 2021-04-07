@@ -16,7 +16,6 @@ public class Scanner {
     private ArrayList<Integer> scores;
     private Context context;
     private String highscores = "highscores";
-    private String photos = "photos";
 
     //Code based on https://developer.android.com/training/data-storage/app-specific
 

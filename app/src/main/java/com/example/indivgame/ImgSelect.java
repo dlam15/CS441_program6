@@ -87,6 +87,8 @@ public class ImgSelect extends AppCompatActivity {
 
     }
 
+    //Get the results of an activity
+    //https://www.javatpoint.com/android-startactivityforresult-example
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);

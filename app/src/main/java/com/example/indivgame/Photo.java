@@ -56,6 +56,8 @@ public class Photo extends View {
         int spaceX = 0;
         int spaceY = 0;
         for(int i=0;i<(size*size-1);i++){
+            //Take part of the image
+            //https://stackoverflow.com/questions/7234986/how-to-split-image-to-2-parts
             Bitmap temp = Bitmap.createBitmap(original,x,y,width,height);
             correct.add(temp);
             current.add(temp);
@@ -134,8 +136,7 @@ public class Photo extends View {
 
     private void shuffle(){
         Random random = new Random();
-        //int moves = random.nextInt(size*15-size*10)+size*10;
-        int moves = 1;
+        int moves = random.nextInt(size*15-size*10)+size*10;
         int last = -1;
         for(int i=0; i<moves; i++){
             ArrayList<Integer> options = allMovable(last);
